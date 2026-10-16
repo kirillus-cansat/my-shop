@@ -6,12 +6,7 @@
   <title>Наталья Рудая — Магазин</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
     body {
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
@@ -19,115 +14,70 @@
       min-height: 100vh;
     }
 
-    /* Шапка с фоном */
     .header {
       position: relative;
       background: url('depositphotos.jpg') center/cover no-repeat;
       padding: 60px 20px 40px;
       text-align: center;
     }
-
     .header::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(10, 10, 30, 0.7);
     }
-
-    .header-content {
-      position: relative;
-      z-index: 1;
-    }
-
+    .header-content { position: relative; z-index: 1; }
     .header h1 {
-      font-size: 22px;
-      line-height: 1.4;
-      color: #f0d9a0;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-      max-width: 700px;
-      margin: 0 auto;
+      font-size: 22px; line-height: 1.4; color: #f0d9a0;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      max-width: 700px; margin: 0 auto;
     }
+    .header p { margin-top: 10px; font-size: 14px; color: #c0c0d0; }
 
-    .header p {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #c0c0d0;
-    }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
 
-    /* Контейнер */
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    /* Заголовки разделов */
     .section-title {
-      font-size: 24px;
-      color: #f0d9a0;
-      text-align: center;
-      margin: 40px 0 20px;
-      position: relative;
+      font-size: 24px; color: #f0d9a0; text-align: center;
+      margin: 40px 0 20px; position: relative;
     }
-
     .section-title::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: #f0d9a0;
-      margin: 10px auto 0;
-      border-radius: 2px;
+      content: ''; display: block; width: 60px; height: 3px;
+      background: #f0d9a0; margin: 10px auto 0; border-radius: 2px;
     }
 
-    /* Сетка карточек */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
 
-    /* Карточка */
     .card {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(240, 217, 160, 0.2);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(240,217,160,0.2);
       border-radius: 16px;
-      padding: 24px;
+      overflow: hidden;
       transition: transform 0.2s, box-shadow 0.2s;
-      display: flex;
-      flex-direction: column;
+      display: flex; flex-direction: column;
     }
-
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(240, 217, 160, 0.15);
+      box-shadow: 0 10px 30px rgba(240,217,160,0.15);
     }
 
-    .card h3 {
-      font-size: 18px;
-      color: #f0d9a0;
-      margin-bottom: 10px;
+    .card-img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      background: #2a2a4e;
+      display: block;
     }
 
-    .card p {
-      font-size: 14px;
-      color: #b0b0c0;
-      line-height: 1.5;
-      flex-grow: 1;
-      margin-bottom: 15px;
-    }
+    .card-body { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
 
-    .card .price {
-      font-size: 20px;
-      font-weight: bold;
-      color: #fff;
-      margin-bottom: 15px;
-    }
+    .card h3 { font-size: 17px; color: #f0d9a0; margin-bottom: 10px; }
+    .card p { font-size: 14px; color: #b0b0c0; line-height: 1.5; flex-grow: 1; margin-bottom: 15px; }
+    .card .price { font-size: 19px; font-weight: bold; color: #fff; margin-bottom: 15px; }
 
-    /* Кнопка заказа */
     .order-btn {
       display: inline-block;
       background: linear-gradient(135deg, #f0d9a0, #d4af37);
@@ -135,192 +85,81 @@
       padding: 12px 24px;
       border-radius: 30px;
       text-decoration: none;
-      font-weight: bold;
-      font-size: 15px;
-      text-align: center;
-      transition: opacity 0.2s;
-      cursor: pointer;
-      border: none;
+      font-weight: bold; font-size: 15px; text-align: center;
+      transition: opacity 0.2s; cursor: pointer; border: none;
     }
-
-    .order-btn:hover {
-      opacity: 0.85;
-    }
+    .order-btn:hover { opacity: 0.85; }
 
     /* Модальное окно мыла */
     .soap-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 100;
-      overflow-y: auto;
-      padding: 20px;
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 100; overflow-y: auto; padding: 20px;
     }
-
-    .soap-modal.active {
-      display: block;
-    }
-
+    .soap-modal.active { display: block; }
     .soap-modal-content {
-      max-width: 700px;
-      margin: 20px auto;
+      max-width: 700px; margin: 20px auto;
       background: #1a1a2e;
-      border: 1px solid rgba(240, 217, 160, 0.3);
-      border-radius: 20px;
-      padding: 30px;
-      position: relative;
+      border: 1px solid rgba(240,217,160,0.3);
+      border-radius: 20px; padding: 30px; position: relative;
     }
-
     .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      background: none;
-      border: none;
-      color: #f0d9a0;
-      font-size: 28px;
-      cursor: pointer;
-      line-height: 1;
+      position: absolute; top: 15px; right: 20px;
+      background: none; border: none; color: #f0d9a0;
+      font-size: 28px; cursor: pointer; line-height: 1;
     }
+    .soap-modal h2 { color: #f0d9a0; margin-bottom: 20px; font-size: 24px; }
 
-    .soap-modal h2 {
-      color: #f0d9a0;
-      margin-bottom: 20px;
-      font-size: 24px;
-    }
-
-    /* Галерея */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 10px;
-      margin-bottom: 25px;
+      gap: 10px; margin-bottom: 25px;
     }
-
     .gallery img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 12px;
-      cursor: pointer;
+      width: 100%; height: 120px; object-fit: cover;
+      border-radius: 12px; cursor: pointer;
       transition: transform 0.2s;
       border: 2px solid transparent;
+      background: #2a2a4e;
     }
+    .gallery img:hover { transform: scale(1.05); }
+    .gallery img.selected { border-color: #f0d9a0; }
 
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
+    .soap-description { font-size: 14px; line-height: 1.7; color: #c0c0d0; margin-bottom: 20px; }
+    .soap-description strong { color: #f0d9a0; }
+    .soap-description ul { list-style: none; padding-left: 0; margin-top: 10px; }
+    .soap-description li { margin-bottom: 8px; padding-left: 5px; }
 
-    .gallery img.selected {
-      border-color: #f0d9a0;
-    }
-
-    /* Описание мыла */
-    .soap-description {
-      font-size: 14px;
-      line-height: 1.7;
-      color: #c0c0d0;
-      margin-bottom: 20px;
-    }
-
-    .soap-description strong {
-      color: #f0d9a0;
-    }
-
-    .soap-description ul {
-      list-style: none;
-      padding-left: 0;
-      margin-top: 10px;
-    }
-
-    .soap-description li {
-      margin-bottom: 8px;
-      padding-left: 5px;
-    }
-
-    /* Выбор формы и размера */
-    .option-group {
-      margin-bottom: 20px;
-    }
-
-    .option-group label {
-      display: block;
-      font-size: 14px;
-      color: #f0d9a0;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
-
-    .options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
+    .option-group { margin-bottom: 20px; }
+    .option-group label { display: block; font-size: 14px; color: #f0d9a0; margin-bottom: 8px; font-weight: bold; }
+    .options { display: flex; flex-wrap: wrap; gap: 10px; }
     .option-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(240, 217, 160, 0.3);
-      color: #fff;
-      padding: 10px 18px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: all 0.2s;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(240,217,160,0.3);
+      color: #fff; padding: 10px 18px; border-radius: 25px;
+      cursor: pointer; font-size: 14px; transition: all 0.2s;
     }
-
-    .option-btn:hover {
-      background: rgba(240, 217, 160, 0.15);
-    }
-
+    .option-btn:hover { background: rgba(240,217,160,0.15); }
     .option-btn.selected {
       background: linear-gradient(135deg, #f0d9a0, #d4af37);
-      color: #1a1a2e;
-      border-color: #f0d9a0;
-      font-weight: bold;
+      color: #1a1a2e; border-color: #f0d9a0; font-weight: bold;
     }
-
-    /* Итоговая цена */
     .total-price {
-      font-size: 22px;
-      font-weight: bold;
-      color: #f0d9a0;
-      text-align: center;
-      margin: 20px 0;
-    }
-
-    /* Подвал */
-    .footer {
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 13px;
-      color: #707080;
-    }
-
-    .footer a {
-      color: #f0d9a0;
-      text-decoration: none;
+      font-size: 22px; font-weight: bold; color: #f0d9a0;
+      text-align: center; margin: 20px 0;
     }
 
     @media (max-width: 500px) {
-      .header h1 {
-        font-size: 18px;
-      }
-      .soap-modal-content {
-        padding: 20px;
-      }
-      .gallery img {
-        height: 90px;
-      }
+      .header h1 { font-size: 18px; }
+      .soap-modal-content { padding: 20px; }
+      .gallery img { height: 90px; }
+      .card-img { height: 150px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Шапка -->
   <div class="header">
     <div class="header-content">
       <h1>Наталья Рудая | Ясновидящая | Медиум | Целитель | Регрессолог | Обучение</h1>
@@ -330,96 +169,213 @@
 
   <div class="container">
 
-    <!-- Раздел Услуги -->
+    <!-- УСЛУГИ -->
     <h2 class="section-title">✨ Услуги</h2>
     <div class="grid">
 
       <div class="card">
-        <h3>Индивидуальная консультация</h3>
-        <p>Личный разбор вашей ситуации, ответы на вопросы, диагностика энергетического состояния.</p>
-        <div class="price">от 5 000 ₽</div>
-        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20записаться%20на%20индивидуальную%20консультацию." class="order-btn">Записаться</a>
+        <img src="hypno.jpg" alt="Регрессивный гипноз" class="card-img">
+        <div class="card-body">
+          <h3>Регрессивный гипноз (2 часа)</h3>
+          <p>Погружение в прошлые жизни, работа с родовыми сценариями и глубинными блоками.</p>
+          <div class="price">от 17 000 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20записаться%20на%20регрессивный%20гипноз." class="order-btn">Записаться</a>
+        </div>
       </div>
 
       <div class="card">
-        <h3>Регрессия</h3>
-        <p>Погружение в прошлые жизни, работа с родовыми сценариями и глубинными блоками.</p>
-        <div class="price">от 8 000 ₽</div>
-        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20записаться%20на%20регрессию." class="order-btn">Записаться</a>
+        <img src="course1.jpg" alt="Курс обучения 1 ступень" class="card-img">
+        <div class="card-body">
+          <h3>Курс обучения. Первая ступень</h3>
+          <p>Первая ступень обучения — основы работы с энергиями и развитие ясновидения.</p>
+          <div class="price">32 777 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20записаться%20на%20курс%20обучения.%20Первая%20ступень." class="order-btn">Записаться</a>
+        </div>
       </div>
 
       <div class="card">
-        <h3>Энергомассаж</h3>
-        <p>Восстановление энергетического баланса, снятие напряжения и блоков.</p>
-        <div class="price">от 3 000 ₽</div>
-        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20записаться%20на%20энергомассаж." class="order-btn">Записаться</a>
+        <img src="course2.jpg" alt="Курс обучения 2 ступень" class="card-img">
+        <div class="card-body">
+          <h3>Курс обучения. Вторая ступень</h3>
+          <p>Вторая ступень обучения — углублённая практика и работа с медиумизмом.</p>
+          <div class="price">32 777 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20записаться%20на%20курс%20обучения.%20Вторая%20ступень." class="order-btn">Записаться</a>
+        </div>
       </div>
 
       <div class="card">
-        <h3>Сопровождение бизнеса</h3>
-        <p>Энергетическая поддержка и кураторство для предпринимателей и руководителей.</p>
-        <div class="price">от 15 000 ₽</div>
-        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20узнать%20про%20сопровождение%20бизнеса." class="order-btn">Записаться</a>
+        <img src="curator.jpg" alt="Индивидуальное кураторство" class="card-img">
+        <div class="card-body">
+          <h3>Индивидуальное кураторство</h3>
+          <p>Персональное сопровождение и кураторство на пути развития.</p>
+          <div class="price">от 50 999 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20узнать%20про%20индивидуальное%20кураторство." class="order-btn">Записаться</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="consult.jpg" alt="Индивидуальная консультация" class="card-img">
+        <div class="card-body">
+          <h3>Индивидуальная консультация (1 час)</h3>
+          <p>Личный разбор вашей ситуации, ответы на вопросы, диагностика состояния.</p>
+          <div class="price">от 15 000 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20записаться%20на%20индивидуальную%20консультацию." class="order-btn">Записаться</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="cleansing.jpg" alt="Снятие порчи" class="card-img">
+        <div class="card-body">
+          <h3>Снятие порчи, проклятья, приворота</h3>
+          <p>Энергетическая работа по снятию негативных воздействий.</p>
+          <div class="price">от 25 000 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20записаться%20на%20снятие%20порчи." class="order-btn">Записаться</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="space.jpg" alt="Очистка помещений" class="card-img">
+        <div class="card-body">
+          <h3>Очистка помещений от негатива</h3>
+          <p>Энергетическая очистка дома, офиса или другого пространства.</p>
+          <div class="price">от 52 000 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20заказать%20очистку%20помещения." class="order-btn">Записаться</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="psychology.jpg" alt="Психологическая консультация" class="card-img">
+        <div class="card-body">
+          <h3>Психологическая консультация (1 час)</h3>
+          <p>Профессиональная психологическая поддержка и разбор ситуаций.</p>
+          <div class="price">10 000 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20записаться%20на%20психологическую%20консультацию." class="order-btn">Записаться</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="voice.jpg" alt="Распаковка голоса" class="card-img">
+        <div class="card-body">
+          <h3>Распаковка природного голоса (2 часа)</h3>
+          <p>Работа над раскрытием и постановкой природного голоса.</p>
+          <div class="price">12 000 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20записаться%20на%20распаковку%20голоса." class="order-btn">Записаться</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="massage.jpg" alt="Биоэнергомассаж" class="card-img">
+        <div class="card-body">
+          <h3>Биоэнергомассаж аппаратный — микротоки (1 час)</h3>
+          <p>Аппаратный биоэнергомассаж с использованием микротоков.</p>
+          <div class="price">от 7 000 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20записаться%20на%20биоэнергомассаж." class="order-btn">Записаться</a>
+        </div>
       </div>
 
     </div>
 
-    <!-- Раздел Товары -->
+    <!-- СОПРОВОЖДЕНИЕ БИЗНЕСА -->
+    <h2 class="section-title">💼 Сопровождение бизнеса</h2>
+    <div class="grid">
+
+      <div class="card">
+        <img src="logo.jpg" alt="Логотип и брендбук" class="card-img">
+        <div class="card-body">
+          <h3>Логотип и брендбук</h3>
+          <p>Разработка фирменного стиля с энергетической поддержкой.</p>
+          <div class="price">от 35 000 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Интересует%20сопровождение%20бизнеса:%20логотип%20и%20брендбук." class="order-btn">Записаться</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="staff.jpg" alt="Отбор персонала" class="card-img">
+        <div class="card-body">
+          <h3>Отбор персонала</h3>
+          <p>Энергетическая диагностика и подбор сотрудников для вашего бизнеса.</p>
+          <div class="price">от 90 000 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Интересует%20сопровождение%20бизнеса:%20отбор%20персонала." class="order-btn">Записаться</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="negotiations.jpg" alt="Курирование переговоров" class="card-img">
+        <div class="card-body">
+          <h3>Курирование переговоров</h3>
+          <p>Энергетическая поддержка и сопровождение деловых переговоров.</p>
+          <div class="price">от 130 000 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Интересует%20сопровождение%20бизнеса:%20курирование%20переговоров." class="order-btn">Записаться</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="realestate.jpg" alt="Сделки с недвижимостью" class="card-img">
+        <div class="card-body">
+          <h3>Сделки с недвижимостью</h3>
+          <p>Сопровождение сделок с недвижимостью на энергетическом уровне.</p>
+          <div class="price">от 180 000 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Интересует%20сопровождение%20бизнеса:%20сделки%20с%20недвижимостью." class="order-btn">Записаться</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="podcast.jpg" alt="Видеоподкаст" class="card-img">
+        <div class="card-body">
+          <h3>Видеоподкаст (интервью)</h3>
+          <p>Съёмка видеоподкаста или интервью с Натальей Рудая.</p>
+          <div class="price">245 833 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20заказать%20видеоподкаст." class="order-btn">Записаться</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ТОВАРЫ -->
     <h2 class="section-title">🛍️ Товары</h2>
     <div class="grid">
 
       <div class="card">
-        <h3>Обучение</h3>
-        <p>Курсы и практики по развитию ясновидения, работе с энергиями и медиумизму.</p>
-        <div class="price">от 10 000 ₽</div>
-        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20узнать%20про%20обучение." class="order-btn">Узнать</a>
-      </div>
-
-      <!-- Мыло Волховница -->
-      <div class="card">
-        <h3>Мыло «Волховница»</h3>
-        <p>Наш новый бренд. Лечебное натуральное мыло ручной работы. 100% натуральный состав, без красителей и парабенов.</p>
-        <div class="price">от 800 ₽</div>
-        <button class="order-btn" onclick="openSoapModal()">Купить</button>
+        <img src="soap1.jpg" alt="Мыло Волховница" class="card-img">
+        <div class="card-body">
+          <h3>Квантовое мыло «Волховница»</h3>
+          <p>Наш новый бренд. Лечебное натуральное мыло ручной работы. 100% натуральный состав, без красителей и парабенов.</p>
+          <div class="price">от 1 300 ₽</div>
+          <button class="order-btn" onclick="openSoapModal()">Купить</button>
+        </div>
       </div>
 
       <div class="card">
-        <h3>Свеча с программой</h3>
-        <p>Ритуальная свеча с заложенной программой на вашу цель.</p>
-        <div class="price">от 1 500 ₽</div>
-        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20заказать%20свечу%20с%20программой." class="order-btn">Заказать</a>
-      </div>
-
-      <div class="card">
-        <h3>Энергетический набор</h3>
-        <p>Комплект для самостоятельной работы с энергиями и очищения пространства.</p>
-        <div class="price">от 4 000 ₽</div>
-        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20заказать%20энергетический%20набор." class="order-btn">Заказать</a>
+        <img src="pillow1.jpg" alt="Наволочка" class="card-img">
+        <div class="card-body">
+          <h3>Наволочка на подушку 50×70 см</h3>
+          <p>Только для взрослых. Специальное предложение.</p>
+          <div class="price">5 300 ₽</div>
+          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20заказать%20наволочку%20на%20подушку%2050х70." class="order-btn">Заказать</a>
+        </div>
       </div>
 
     </div>
 
   </div>
 
-  <!-- Модальное окно мыла -->
+  <!-- МОДАЛЬНОЕ ОКНО МЫЛА -->
   <div class="soap-modal" id="soapModal">
     <div class="soap-modal-content">
       <button class="close-btn" onclick="closeSoapModal()">&times;</button>
-      <h2>Мыло «Волховница»</h2>
+      <h2>Квантовое мыло «Волховница»</h2>
 
-      <!-- Галерея -->
       <div class="gallery" id="gallery">
-        <img src="soap1.jpg" alt="Мыло Волховница 1" onclick="selectImage(this)" class="selected">
-        <img src="soap2.jpg" alt="Мыло Волховница 2" onclick="selectImage(this)">
-        <img src="soap3.jpg" alt="Мыло Волховница 3" onclick="selectImage(this)">
-        <img src="soap4.jpg" alt="Мыло Волховница 4" onclick="selectImage(this)">
-        <img src="soap5.jpg" alt="Мыло Волховница 5" onclick="selectImage(this)">
-        <img src="soap6.jpg" alt="Мыло Волховница 6" onclick="selectImage(this)">
+        <img src="soap1.jpg" alt="Мыло 1" onclick="selectImage(this)" class="selected">
+        <img src="soap2.jpg" alt="Мыло 2" onclick="selectImage(this)">
+        <img src="soap3.jpg" alt="Мыло 3" onclick="selectImage(this)">
+        <img src="soap4.jpg" alt="Мыло 4" onclick="selectImage(this)">
+        <img src="soap5.jpg" alt="Мыло 5" onclick="selectImage(this)">
+        <img src="soap6.jpg" alt="Мыло 6" onclick="selectImage(this)">
       </div>
 
-      <!-- Описание -->
       <div class="soap-description">
-        <p><strong>Наш новый бренд «Волховница»</strong> — уникальный продукт: мыло лечебное.</p>
+        <p><strong>Наш новый бренд «Волховница»</strong> — уникальный продукт: квантовое мыло лечебное.</p>
         <p style="margin-top: 10px;"><strong>Состав 100% натуральный</strong>, без красителей и парабенов.</p>
 
         <p style="margin-top: 15px;"><strong>🔴 Целебные свойства:</strong></p>
@@ -454,106 +410,57 @@
         </ul>
       </div>
 
-      <!-- Выбор формы -->
       <div class="option-group">
-        <label>Выберите форму:</label>
-        <div class="options" id="shapeOptions">
-          <button class="option-btn selected" onclick="selectOption(this, 'shape', 0)" data-price="800">Облако</button>
-          <button class="option-btn" onclick="selectOption(this, 'shape', 0)" data-price="800">Бабочка</button>
-          <button class="option-btn" onclick="selectOption(this, 'shape', 0)" data-price="800">Сердце</button>
-          <button class="option-btn" onclick="selectOption(this, 'shape', 0)" data-price="800">Квадрат</button>
+        <label>Выберите вариант:</label>
+        <div class="options" id="soapOptions">
+          <button class="option-btn selected" onclick="selectOption(this, 3500)">105 г, форма цветка — 3 500 ₽</button>
+          <button class="option-btn" onclick="selectOption(this, 2500)">70 г, форма облака — 2 500 ₽</button>
+          <button class="option-btn" onclick="selectOption(this, 2000)">40 г, форма сердечка — 2 000 ₽</button>
+          <button class="option-btn" onclick="selectOption(this, 1300)">13 г, форма бабочки — 1 300 ₽</button>
         </div>
       </div>
 
-      <!-- Выбор размера -->
-      <div class="option-group">
-        <label>Выберите размер:</label>
-        <div class="options" id="sizeOptions">
-          <button class="option-btn selected" onclick="selectOption(this, 'size', 0)" data-price="0">Маленькое (80 г)</button>
-          <button class="option-btn" onclick="selectOption(this, 'size', 200)" data-price="200">Среднее (120 г)</button>
-          <button class="option-btn" onclick="selectOption(this, 'size', 400)" data-price="400">Большое (180 г)</button>
-        </div>
-      </div>
+      <div class="total-price" id="totalPrice">3 500 ₽</div>
 
-      <!-- Итоговая цена -->
-      <div class="total-price" id="totalPrice">800 ₽</div>
-
-      <!-- Кнопка заказа -->
       <a href="#" id="soapOrderBtn" class="order-btn" style="display: block; text-align: center;" onclick="orderSoap(event)">Заказать в Telegram</a>
     </div>
   </div>
 
   <script>
-    // Активируем приложение, если оно открыто внутри Telegram
     if (window.Telegram && window.Telegram.WebApp) {
       window.Telegram.WebApp.ready();
       window.Telegram.WebApp.expand();
     }
 
-    // Текущие выбранные параметры
-    let selectedShape = 'Облако';
-    let selectedSize = 'Маленькое (80 г)';
-    let basePrice = 800;
-    let shapeExtra = 0;
-    let sizeExtra = 0;
+    let selectedSoap = '105 г, форма цветка';
+    let soapPrice = 3500;
 
-    // Открыть модальное окно
     function openSoapModal() {
       document.getElementById('soapModal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
-
-    // Закрыть модальное окно
     function closeSoapModal() {
       document.getElementById('soapModal').classList.remove('active');
       document.body.style.overflow = '';
     }
-
-    // Выбор изображения
     function selectImage(img) {
       document.querySelectorAll('#gallery img').forEach(i => i.classList.remove('selected'));
       img.classList.add('selected');
     }
-
-    // Выбор опции (форма или размер)
-    function selectOption(btn, type, extra) {
-      const parent = btn.parentElement;
-      parent.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+    function selectOption(btn, price) {
+      document.querySelectorAll('#soapOptions .option-btn').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
-
-      if (type === 'shape') {
-        selectedShape = btn.textContent.trim();
-        shapeExtra = extra;
-      } else {
-        selectedSize = btn.textContent.trim();
-        sizeExtra = extra;
-      }
-
-      updatePrice();
+      selectedSoap = btn.textContent.split('—')[0].trim();
+      soapPrice = price;
+      document.getElementById('totalPrice').textContent = price.toLocaleString('ru-RU') + ' ₽';
     }
-
-    // Обновить итоговую цену
-    function updatePrice() {
-      const total = basePrice + shapeExtra + sizeExtra;
-      document.getElementById('totalPrice').textContent = total + ' ₽';
-    }
-
-    // Заказ мыла
     function orderSoap(event) {
       event.preventDefault();
-
-      const total = basePrice + shapeExtra + sizeExtra;
-      const message = `Здравствуйте! Хочу заказать мыло «Волховница».%0AФорма: ${selectedShape}%0AРазмер: ${selectedSize}%0AЦена: ${total} ₽`;
-
-      const url = `https://t.me/Fghfghfgh16?text=${message}`;
-      window.open(url, '_blank');
+      const message = `Здравствуйте! Хочу заказать квантовое мыло «Волховница».%0AВариант: ${selectedSoap}%0AЦена: ${soapPrice.toLocaleString('ru-RU')} ₽`;
+      window.open(`https://t.me/Fghfghfgh16?text=${message}`, '_blank');
     }
-
-    // Закрыть по клику вне окна
     document.getElementById('soapModal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeSoapModal();
-      }
+      if (e.target === this) closeSoapModal();
     });
   </script>
 
