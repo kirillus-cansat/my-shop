@@ -94,15 +94,15 @@
     }
     .order-btn:hover { opacity: 0.85; }
 
-    /* Модальное окно мыла */
-    .soap-modal {
+    /* Общие стили для модальных окон */
+    .modal {
       display: none; position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
       background: rgba(0,0,0,0.85);
       z-index: 100; overflow-y: auto; padding: 20px;
     }
-    .soap-modal.active { display: block; }
-    .soap-modal-content {
+    .modal.active { display: block; }
+    .modal-content {
       max-width: 700px; margin: 20px auto;
       background: #1a1a2e;
       border: 1px solid rgba(240,217,160,0.3);
@@ -113,7 +113,7 @@
       background: none; border: none; color: #f0d9a0;
       font-size: 28px; cursor: pointer; line-height: 1;
     }
-    .soap-modal h2 { color: #f0d9a0; margin-bottom: 20px; font-size: 24px; }
+    .modal h2 { color: #f0d9a0; margin-bottom: 20px; font-size: 24px; }
 
     .gallery {
       display: grid;
@@ -134,10 +134,10 @@
     .gallery img:hover { transform: scale(1.05); }
     .gallery img.selected { border-color: #f0d9a0; }
 
-    .soap-description { font-size: 14px; line-height: 1.7; color: #c0c0d0; margin-bottom: 20px; }
-    .soap-description strong { color: #f0d9a0; }
-    .soap-description ul { list-style: none; padding-left: 0; margin-top: 10px; }
-    .soap-description li { margin-bottom: 8px; padding-left: 5px; }
+    .description { font-size: 14px; line-height: 1.7; color: #c0c0d0; margin-bottom: 20px; }
+    .description strong { color: #f0d9a0; }
+    .description ul { list-style: none; padding-left: 0; margin-top: 10px; }
+    .description li { margin-bottom: 8px; padding-left: 5px; }
 
     .option-group { margin-bottom: 20px; }
     .option-group label { display: block; font-size: 14px; color: #f0d9a0; margin-bottom: 8px; font-weight: bold; }
@@ -202,7 +202,7 @@
 
     @media (max-width: 500px) {
       .header h1 { font-size: 18px; }
-      .soap-modal-content { padding: 20px; }
+      .modal-content { padding: 20px; }
       .gallery img { max-height: 150px; }
       .card-img { max-height: 260px; }
     }
@@ -401,7 +401,7 @@
           <h3>Наволочка на подушку 50×70 см</h3>
           <p>Только для взрослых. Специальное предложение.</p>
           <div class="price">5 300 ₽</div>
-          <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20заказать%20наволочку%20на%20подушку%2050х70." class="order-btn">Заказать</a>
+          <button class="order-btn" onclick="openPillowModal()">Купить</button>
         </div>
       </div>
 
@@ -410,21 +410,21 @@
   </div>
 
   <!-- МОДАЛЬНОЕ ОКНО МЫЛА -->
-  <div class="soap-modal" id="soapModal">
-    <div class="soap-modal-content">
+  <div class="modal" id="soapModal">
+    <div class="modal-content">
       <button class="close-btn" onclick="closeSoapModal()">&times;</button>
       <h2>Квантовое мыло «Волховница»</h2>
 
-      <div class="gallery" id="gallery">
-        <img src="soap1.jpg" alt="Мыло 1" onclick="selectImage(this)" class="selected">
-        <img src="soap2.jpg" alt="Мыло 2" onclick="selectImage(this)">
-        <img src="soap3.jpg" alt="Мыло 3" onclick="selectImage(this)">
-        <img src="soap4.jpg" alt="Мыло 4" onclick="selectImage(this)">
-        <img src="soap5.jpg" alt="Мыло 5" onclick="selectImage(this)">
-        <img src="soap6.jpg" alt="Мыло 6" onclick="selectImage(this)">
+      <div class="gallery" id="soapGallery">
+        <img src="soap1.jpg" alt="Мыло 1" onclick="selectSoapImage(this)" class="selected">
+        <img src="soap2.jpg" alt="Мыло 2" onclick="selectSoapImage(this)">
+        <img src="soap3.jpg" alt="Мыло 3" onclick="selectSoapImage(this)">
+        <img src="soap4.jpg" alt="Мыло 4" onclick="selectSoapImage(this)">
+        <img src="soap5.jpg" alt="Мыло 5" onclick="selectSoapImage(this)">
+        <img src="soap6.jpg" alt="Мыло 6" onclick="selectSoapImage(this)">
       </div>
 
-      <div class="soap-description">
+      <div class="description">
         <p><strong>Наш новый бренд «Волховница»</strong> — уникальный продукт: квантовое мыло лечебное.</p>
         <p style="margin-top: 10px;"><strong>Состав 100% натуральный</strong>, без красителей и парабенов.</p>
 
@@ -463,16 +463,48 @@
       <div class="option-group">
         <label>Выберите вариант:</label>
         <div class="options" id="soapOptions">
-          <button class="option-btn selected" onclick="selectOption(this, 3500)">105 г, форма цветка — 3 500 ₽</button>
-          <button class="option-btn" onclick="selectOption(this, 2500)">70 г, форма облака — 2 500 ₽</button>
-          <button class="option-btn" onclick="selectOption(this, 2000)">40 г, форма сердечка — 2 000 ₽</button>
-          <button class="option-btn" onclick="selectOption(this, 1300)">13 г, форма бабочки — 1 300 ₽</button>
+          <button class="option-btn selected" onclick="selectSoapOption(this, 3500)">105 г, форма цветка — 3 500 ₽</button>
+          <button class="option-btn" onclick="selectSoapOption(this, 2500)">70 г, форма облака — 2 500 ₽</button>
+          <button class="option-btn" onclick="selectSoapOption(this, 2000)">40 г, форма сердечка — 2 000 ₽</button>
+          <button class="option-btn" onclick="selectSoapOption(this, 1300)">13 г, форма бабочки — 1 300 ₽</button>
         </div>
       </div>
 
-      <div class="total-price" id="totalPrice">3 500 ₽</div>
+      <div class="total-price" id="soapPrice">3 500 ₽</div>
 
-      <a href="#" id="soapOrderBtn" class="order-btn" style="display: block; text-align: center;" onclick="orderSoap(event)">Заказать в Telegram</a>
+      <a href="#" class="order-btn" style="display: block; text-align: center;" onclick="orderSoap(event)">Заказать в Telegram</a>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО ПОДУШЕК -->
+  <div class="modal" id="pillowModal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closePillowModal()">&times;</button>
+      <h2>Наволочка на подушку 50×70 см</h2>
+
+      <div class="gallery" id="pillowGallery">
+        <img src="50782fea-3fce-4f42-a20e-e8ccfb54ae5f.jpg" alt="Наволочка 1" onclick="selectPillowImage(this)" class="selected">
+        <img src="535667f1-fff4-4c18-a748-7f9790be8785.jpg" alt="Наволочка 2" onclick="selectPillowImage(this)">
+        <img src="dc88cb0a-e343-46cf-850d-b82373e23280.jpg" alt="Наволочка 3" onclick="selectPillowImage(this)">
+      </div>
+
+      <div class="description">
+        <p><strong>Наволочка на подушку 50×70 см</strong> — специальное предложение.</p>
+        <p style="margin-top: 10px;">Доступны варианты для взрослых и для детей.</p>
+      </div>
+
+      <div class="option-group">
+        <label>Выберите вариант:</label>
+        <div class="options" id="pillowOptions">
+          <button class="option-btn selected" onclick="selectPillowOption(this, 5300, 'Наволочка для взрослых и детей (вариант 1)')">Для взрослых и детей — 5 300 ₽</button>
+          <button class="option-btn" onclick="selectPillowOption(this, 5300, 'Наволочка для взрослых и детей (вариант 2)')">Для взрослых и детей (вариант 2) — 5 300 ₽</button>
+          <button class="option-btn" onclick="selectPillowOption(this, 5300, 'Наволочка только для взрослых')">Только для взрослых — 5 300 ₽</button>
+        </div>
+      </div>
+
+      <div class="total-price" id="pillowPrice">5 300 ₽</div>
+
+      <a href="#" class="order-btn" style="display: block; text-align: center;" onclick="orderPillow(event)">Заказать в Telegram</a>
     </div>
   </div>
 
@@ -488,6 +520,7 @@
       window.Telegram.WebApp.expand();
     }
 
+    /* ===== МЫЛО ===== */
     let selectedSoap = '105 г, форма цветка';
     let soapPrice = 3500;
 
@@ -499,46 +532,37 @@
       document.getElementById('soapModal').classList.remove('active');
       document.body.style.overflow = '';
     }
-    function selectImage(img) {
-      document.querySelectorAll('#gallery img').forEach(i => i.classList.remove('selected'));
+    function selectSoapImage(img) {
+      document.querySelectorAll('#soapGallery img').forEach(i => i.classList.remove('selected'));
       img.classList.add('selected');
     }
-    function selectOption(btn, price) {
+    function selectSoapOption(btn, price) {
       document.querySelectorAll('#soapOptions .option-btn').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
       selectedSoap = btn.textContent.split('—')[0].trim();
       soapPrice = price;
-      document.getElementById('totalPrice').textContent = price.toLocaleString('ru-RU') + ' ₽';
+      document.getElementById('soapPrice').textContent = price.toLocaleString('ru-RU') + ' ₽';
     }
     function orderSoap(event) {
       event.preventDefault();
       const message = `Здравствуйте! Хочу заказать квантовое мыло «Волховница».%0AВариант: ${selectedSoap}%0AЦена: ${soapPrice.toLocaleString('ru-RU')} ₽`;
       window.open(`https://t.me/Fghfghfgh16?text=${message}`, '_blank');
     }
-    document.getElementById('soapModal').addEventListener('click', function(e) {
-      if (e.target === this) closeSoapModal();
-    });
 
-    // 🔍 Просмотр картинки
-    function openLightbox(src) {
-      const lightbox = document.getElementById('lightbox');
-      const img = document.getElementById('lightboxImg');
-      img.src = src;
-      lightbox.classList.add('active');
+    /* ===== ПОДУШКИ ===== */
+    let selectedPillow = 'Наволочка для взрослых и детей (вариант 1)';
+    let pillowPrice = 5300;
+
+    function openPillowModal() {
+      document.getElementById('pillowModal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
-
-    function closeLightbox() {
-      const lightbox = document.getElementById('lightbox');
-      lightbox.classList.remove('active');
-      document.getElementById('lightboxImg').src = '';
+    function closePillowModal() {
+      document.getElementById('pillowModal').classList.remove('active');
       document.body.style.overflow = '';
     }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeLightbox();
-    });
-  </script>
-
-</body>
-</html>
+    function selectPillowImage(img) {
+      document.querySelectorAll('#pillowGallery img').forEach(i => i.classList.remove('selected'));
+      img.classList.add('selected');
+    }
+   
