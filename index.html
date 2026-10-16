@@ -94,7 +94,6 @@
     }
     .order-btn:hover { opacity: 0.85; }
 
-    /* Модальное окно */
     .modal {
       display: none; position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
@@ -158,7 +157,6 @@
       text-align: center; margin: 20px 0;
     }
 
-    /* 🔍 Просмотр картинки */
     .lightbox {
       display: none;
       position: fixed;
@@ -552,4 +550,22 @@
       btn.classList.add('selected');
       selectedSoap = btn.textContent.split('—')[0].trim();
       soapPrice = price;
-     
+      document.getElementById('soapPrice').textContent = price.toLocaleString('ru-RU') + ' ₽';
+    }
+    function orderSoap(event) {
+      event.preventDefault();
+      const message = `Здравствуйте! Хочу заказать квантовое мыло «Волховница».%0AВариант: ${selectedSoap}%0AЦена: ${soapPrice.toLocaleString('ru-RU')} ₽`;
+      window.open(`https://t.me/Fghfghfgh16?text=${message}`, '_blank');
+    }
+
+    /* ===== ПОДУШКИ ===== */
+    let selectedPillow = 'Наволочка';
+    let pillowPrice = 5300;
+
+    function openPillowModal(name, imgSrc) {
+      selectedPillow = name;
+      pillowPrice = 5300;
+      document.getElementById('pillowModalTitle').textContent = name;
+      document.getElementById('pillowModalImg').src = imgSrc;
+      document.getElementById('pillowPrice').textContent = pillowPrice.toLocaleString('ru-RU') + ' ₽';
+      document.getElementById('pillowModal').
