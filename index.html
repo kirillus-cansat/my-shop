@@ -94,7 +94,7 @@
     }
     .order-btn:hover { opacity: 0.85; }
 
-    /* Общие стили для модальных окон */
+    /* Модальное окно */
     .modal {
       display: none; position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
@@ -158,7 +158,7 @@
       text-align: center; margin: 20px 0;
     }
 
-    /* 🔍 Просмотр картинки на весь экран */
+    /* 🔍 Просмотр картинки */
     .lightbox {
       display: none;
       position: fixed;
@@ -385,6 +385,7 @@
     <h2 class="section-title">🛍️ Товары</h2>
     <div class="grid">
 
+      <!-- МЫЛО -->
       <div class="card">
         <img src="soap1.jpg" alt="Мыло Волховница" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
@@ -395,13 +396,36 @@
         </div>
       </div>
 
+      <!-- НАВОЛОЧКА 1 -->
       <div class="card">
-        <img src="dc88cb0a-e343-46cf-850d-b82373e23280.jpg" alt="Наволочка" class="card-img" onclick="openLightbox(this.src)">
+        <img src="50782fea-3fce-4f42-a20e-e8ccfb54ae5f.jpg" alt="Наволочка для взрослых и детей" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
-          <h3>Наволочка на подушку 50×70 см</h3>
-          <p>Только для взрослых. Специальное предложение.</p>
+          <h3>Наволочка для взрослых и детей</h3>
+          <p>Наволочка на подушку 50×70 см. Первый вариант дизайна. Подходит для взрослых и детей.</p>
           <div class="price">5 300 ₽</div>
-          <button class="order-btn" onclick="openPillowModal()">Купить</button>
+          <button class="order-btn" onclick="openPillowModal('Наволочка для взрослых и детей (вариант 1)', '50782fea-3fce-4f42-a20e-e8ccfb54ae5f.jpg')">Купить</button>
+        </div>
+      </div>
+
+      <!-- НАВОЛОЧКА 2 -->
+      <div class="card">
+        <img src="535667f1-fff4-4c18-a748-7f9790be8785.jpg" alt="Наволочка для взрослых и детей" class="card-img" onclick="openLightbox(this.src)">
+        <div class="card-body">
+          <h3>Наволочка для взрослых и детей</h3>
+          <p>Наволочка на подушку 50×70 см. Второй вариант дизайна. Подходит для взрослых и детей.</p>
+          <div class="price">5 300 ₽</div>
+          <button class="order-btn" onclick="openPillowModal('Наволочка для взрослых и детей (вариант 2)', '535667f1-fff4-4c18-a748-7f9790be8785.jpg')">Купить</button>
+        </div>
+      </div>
+
+      <!-- НАВОЛОЧКА 3 -->
+      <div class="card">
+        <img src="dc88cb0a-e343-46cf-850d-b82373e23280.jpg" alt="Наволочка только для взрослых" class="card-img" onclick="openLightbox(this.src)">
+        <div class="card-body">
+          <h3>Наволочка только для взрослых</h3>
+          <p>Наволочка на подушку 50×70 см. Специальное предложение. Только для взрослых.</p>
+          <div class="price">5 300 ₽</div>
+          <button class="order-btn" onclick="openPillowModal('Наволочка только для взрослых', 'dc88cb0a-e343-46cf-850d-b82373e23280.jpg')">Купить</button>
         </div>
       </div>
 
@@ -480,26 +504,13 @@
   <div class="modal" id="pillowModal">
     <div class="modal-content">
       <button class="close-btn" onclick="closePillowModal()">&times;</button>
-      <h2>Наволочка на подушку 50×70 см</h2>
+      <h2 id="pillowModalTitle">Наволочка на подушку 50×70 см</h2>
 
-      <div class="gallery" id="pillowGallery">
-        <img src="50782fea-3fce-4f42-a20e-e8ccfb54ae5f.jpg" alt="Наволочка 1" onclick="selectPillowImage(this)" class="selected">
-        <img src="535667f1-fff4-4c18-a748-7f9790be8785.jpg" alt="Наволочка 2" onclick="selectPillowImage(this)">
-        <img src="dc88cb0a-e343-46cf-850d-b82373e23280.jpg" alt="Наволочка 3" onclick="selectPillowImage(this)">
-      </div>
+      <img id="pillowModalImg" src="" alt="Наволочка" style="width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 12px; margin-bottom: 20px; background: #2a2a4e;">
 
       <div class="description">
         <p><strong>Наволочка на подушку 50×70 см</strong> — специальное предложение.</p>
-        <p style="margin-top: 10px;">Доступны варианты для взрослых и для детей.</p>
-      </div>
-
-      <div class="option-group">
-        <label>Выберите вариант:</label>
-        <div class="options" id="pillowOptions">
-          <button class="option-btn selected" onclick="selectPillowOption(this, 5300, 'Наволочка для взрослых и детей (вариант 1)')">Для взрослых и детей — 5 300 ₽</button>
-          <button class="option-btn" onclick="selectPillowOption(this, 5300, 'Наволочка для взрослых и детей (вариант 2)')">Для взрослых и детей (вариант 2) — 5 300 ₽</button>
-          <button class="option-btn" onclick="selectPillowOption(this, 5300, 'Наволочка только для взрослых')">Только для взрослых — 5 300 ₽</button>
-        </div>
+        <p style="margin-top: 10px;">Размер: 50×70 см. Высокое качество, гипоаллергенный материал.</p>
       </div>
 
       <div class="total-price" id="pillowPrice">5 300 ₽</div>
@@ -541,28 +552,4 @@
       btn.classList.add('selected');
       selectedSoap = btn.textContent.split('—')[0].trim();
       soapPrice = price;
-      document.getElementById('soapPrice').textContent = price.toLocaleString('ru-RU') + ' ₽';
-    }
-    function orderSoap(event) {
-      event.preventDefault();
-      const message = `Здравствуйте! Хочу заказать квантовое мыло «Волховница».%0AВариант: ${selectedSoap}%0AЦена: ${soapPrice.toLocaleString('ru-RU')} ₽`;
-      window.open(`https://t.me/Fghfghfgh16?text=${message}`, '_blank');
-    }
-
-    /* ===== ПОДУШКИ ===== */
-    let selectedPillow = 'Наволочка для взрослых и детей (вариант 1)';
-    let pillowPrice = 5300;
-
-    function openPillowModal() {
-      document.getElementById('pillowModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function closePillowModal() {
-      document.getElementById('pillowModal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    function selectPillowImage(img) {
-      document.querySelectorAll('#pillowGallery img').forEach(i => i.classList.remove('selected'));
-      img.classList.add('selected');
-    }
-   
+     
