@@ -70,7 +70,10 @@
       object-fit: cover;
       background: #2a2a4e;
       display: block;
+      cursor: zoom-in;
+      transition: opacity 0.2s;
     }
+    .card-img:hover { opacity: 0.9; }
 
     .card-body { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
 
@@ -90,6 +93,7 @@
     }
     .order-btn:hover { opacity: 0.85; }
 
+    /* Модальное окно мыла */
     .soap-modal {
       display: none; position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
@@ -149,6 +153,48 @@
       text-align: center; margin: 20px 0;
     }
 
+    /* 🔍 Просмотр картинки на весь экран */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      cursor: zoom-out;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 0 50px rgba(240, 217, 160, 0.3);
+      animation: zoomIn 0.25s ease;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      color: #f0d9a0;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+      background: none;
+      border: none;
+      z-index: 201;
+    }
+    .lightbox-close:hover { color: #fff; }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
     @media (max-width: 500px) {
       .header h1 { font-size: 18px; }
       .soap-modal-content { padding: 20px; }
@@ -173,7 +219,7 @@
     <div class="grid">
 
       <div class="card">
-        <img src="f64a44db-d565-4637-8fa5-64b2236cf4c4.png" alt="Регрессивный гипноз" class="card-img">
+        <img src="f64a44db-d565-4637-8fa5-64b2236cf4c4.png" alt="Регрессивный гипноз" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Регрессивный гипноз (2 часа)</h3>
           <p>Погружение в прошлые жизни, работа с родовыми сценариями и глубинными блоками.</p>
@@ -183,7 +229,7 @@
       </div>
 
       <div class="card">
-        <img src="d018e0f4-9fa7-4998-a3e9-6abf9c860cfc.png" alt="Курс обучения 1 ступень" class="card-img">
+        <img src="d018e0f4-9fa7-4998-a3e9-6abf9c860cfc.png" alt="Курс обучения 1 ступень" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Курс обучения. Первая ступень</h3>
           <p>Первая ступень обучения — основы работы с энергиями и развитие ясновидения.</p>
@@ -193,7 +239,7 @@
       </div>
 
       <div class="card">
-        <img src="d018e0f4-9fa7-4998-a3e9-6abf9c860cfc.png" alt="Курс обучения 2 ступень" class="card-img">
+        <img src="d018e0f4-9fa7-4998-a3e9-6abf9c860cfc.png" alt="Курс обучения 2 ступень" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Курс обучения. Вторая ступень</h3>
           <p>Вторая ступень обучения — углублённая практика и работа с медиумизмом.</p>
@@ -203,7 +249,7 @@
       </div>
 
       <div class="card">
-        <img src="6cbe0d7d-4fd1-4210-bfc2-016bea342f68.png" alt="Индивидуальное кураторство" class="card-img">
+        <img src="6cbe0d7d-4fd1-4210-bfc2-016bea342f68.png" alt="Индивидуальное кураторство" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Индивидуальное кураторство</h3>
           <p>Персональное сопровождение и кураторство на пути развития.</p>
@@ -213,7 +259,7 @@
       </div>
 
       <div class="card">
-        <img src="f8433f6ee82c8b39729f113489c577a4.jpeg" alt="Индивидуальная консультация" class="card-img">
+        <img src="f8433f6ee82c8b39729f113489c577a4.jpeg" alt="Индивидуальная консультация" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Индивидуальная консультация (1 час)</h3>
           <p>Личный разбор вашей ситуации, ответы на вопросы, диагностика состояния.</p>
@@ -223,7 +269,7 @@
       </div>
 
       <div class="card">
-        <img src="257e62e7-b6f1-411a-ae80-bd85c3e12c0b.png" alt="Снятие порчи" class="card-img">
+        <img src="257e62e7-b6f1-411a-ae80-bd85c3e12c0b.png" alt="Снятие порчи" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Снятие порчи, проклятья, приворота</h3>
           <p>Энергетическая работа по снятию негативных воздействий.</p>
@@ -233,7 +279,7 @@
       </div>
 
       <div class="card">
-        <img src="c4973189-a790-429b-90c0-883fdbd447ea.jpg" alt="Очистка помещений" class="card-img">
+        <img src="c4973189-a790-429b-90c0-883fdbd447ea.jpg" alt="Очистка помещений" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Очистка помещений от негатива</h3>
           <p>Энергетическая очистка дома, офиса или другого пространства.</p>
@@ -243,7 +289,7 @@
       </div>
 
       <div class="card">
-        <img src="d8e59700-c0bd-41f8-aecf-b98779131059.png" alt="Психологическая консультация" class="card-img">
+        <img src="d8e59700-c0bd-41f8-aecf-b98779131059.png" alt="Психологическая консультация" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Психологическая консультация (1 час)</h3>
           <p>Профессиональная психологическая поддержка и разбор ситуаций.</p>
@@ -253,7 +299,7 @@
       </div>
 
       <div class="card">
-        <img src="2fd5cc85-d89b-41c8-a30f-9819b2906c24.png" alt="Распаковка голоса" class="card-img">
+        <img src="2fd5cc85-d89b-41c8-a30f-9819b2906c24.png" alt="Распаковка голоса" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Распаковка природного голоса (2 часа)</h3>
           <p>Работа над раскрытием и постановкой природного голоса.</p>
@@ -263,7 +309,7 @@
       </div>
 
       <div class="card">
-        <img src="db7b48c8-be0b-4db4-b8d2-120308c72572.png" alt="Биоэнергомассаж" class="card-img">
+        <img src="db7b48c8-be0b-4db4-b8d2-120308c72572.png" alt="Биоэнергомассаж" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Биоэнергомассаж аппаратный — микротоки (1 час)</h3>
           <p>Аппаратный биоэнергомассаж с использованием микротоков.</p>
@@ -279,7 +325,7 @@
     <div class="grid">
 
       <div class="card">
-        <img src="4db75d17-1723-45ee-9994-03eb67d1dda9.png" alt="Логотип и брендбук" class="card-img">
+        <img src="4db75d17-1723-45ee-9994-03eb67d1dda9.png" alt="Логотип и брендбук" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Логотип и брендбук</h3>
           <p>Разработка фирменного стиля с энергетической поддержкой.</p>
@@ -289,7 +335,7 @@
       </div>
 
       <div class="card">
-        <img src="e50ba1ea-83a8-4605-8110-d611a1af7c42.png" alt="Отбор персонала" class="card-img">
+        <img src="e50ba1ea-83a8-4605-8110-d611a1af7c42.png" alt="Отбор персонала" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Отбор персонала</h3>
           <p>Энергетическая диагностика и подбор сотрудников для вашего бизнеса.</p>
@@ -299,7 +345,7 @@
       </div>
 
       <div class="card">
-        <img src="1fc754cb-48dc-4836-b2c4-a73322cadc16.png" alt="Курирование переговоров" class="card-img">
+        <img src="1fc754cb-48dc-4836-b2c4-a73322cadc16.png" alt="Курирование переговоров" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Курирование переговоров</h3>
           <p>Энергетическая поддержка и сопровождение деловых переговоров.</p>
@@ -309,7 +355,7 @@
       </div>
 
       <div class="card">
-        <img src="c9900889-344c-4689-8919-e92553ee4959.png" alt="Сделки с недвижимостью" class="card-img">
+        <img src="c9900889-344c-4689-8919-e92553ee4959.png" alt="Сделки с недвижимостью" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Сделки с недвижимостью</h3>
           <p>Сопровождение сделок с недвижимостью на энергетическом уровне.</p>
@@ -319,7 +365,7 @@
       </div>
 
       <div class="card">
-        <img src="d9113ee8-f466-4698-9477-73dba63ce4ea.png" alt="Видеоподкаст" class="card-img">
+        <img src="d9113ee8-f466-4698-9477-73dba63ce4ea.png" alt="Видеоподкаст" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Видеоподкаст (интервью)</h3>
           <p>Съёмка видеоподкаста или интервью с Натальей Рудая.</p>
@@ -335,7 +381,7 @@
     <div class="grid">
 
       <div class="card">
-        <img src="soap1.jpg" alt="Мыло Волховница" class="card-img">
+        <img src="soap1.jpg" alt="Мыло Волховница" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Квантовое мыло «Волховница»</h3>
           <p>Наш новый бренд. Лечебное натуральное мыло ручной работы. 100% натуральный состав, без красителей и парабенов.</p>
@@ -345,7 +391,7 @@
       </div>
 
       <div class="card">
-        <img src="dc88cb0a-e343-46cf-850d-b82373e23280.jpg" alt="Наволочка" class="card-img">
+        <img src="dc88cb0a-e343-46cf-850d-b82373e23280.jpg" alt="Наволочка" class="card-img" onclick="openLightbox(this.src)">
         <div class="card-body">
           <h3>Наволочка на подушку 50×70 см</h3>
           <p>Только для взрослых. Специальное предложение.</p>
@@ -425,6 +471,12 @@
     </div>
   </div>
 
+  <!-- 🔍 ПРОСМОТР КАРТИНКИ -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightboxImg" src="" alt="Просмотр">
+  </div>
+
   <script>
     if (window.Telegram && window.Telegram.WebApp) {
       window.Telegram.WebApp.ready();
@@ -460,6 +512,27 @@
     }
     document.getElementById('soapModal').addEventListener('click', function(e) {
       if (e.target === this) closeSoapModal();
+    });
+
+    // 🔍 Просмотр картинки
+    function openLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightboxImg');
+      img.src = src;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.getElementById('lightboxImg').src = '';
+      document.body.style.overflow = '';
+    }
+
+    // Закрытие по Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
     });
   </script>
 
