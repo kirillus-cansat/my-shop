@@ -3,35 +3,257 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мой магазин</title>
+  <title>Наталья Рудая — Магазин</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
-    body {
-      font-family: sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    * {
       margin: 0;
-      background-color: #f0f2f5;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    .button {
-      background-color: #0088cc;
-      color: white;
-      padding: 15px 30px;
-      border-radius: 8px;
-      text-decoration: none;
+
+    body {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    /* Шапка с фоном */
+    .header {
+      position: relative;
+      background: url('depositphotos.jpg') center/cover no-repeat;
+      padding: 60px 20px 40px;
+      text-align: center;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10, 10, 30, 0.7);
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .header h1 {
+      font-size: 22px;
+      line-height: 1.4;
+      color: #f0d9a0;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .header p {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #c0c0d0;
+    }
+
+    /* Контейнер */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Заголовки разделов */
+    .section-title {
+      font-size: 24px;
+      color: #f0d9a0;
+      text-align: center;
+      margin: 40px 0 20px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #f0d9a0;
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Сетка карточек */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    /* Карточка */
+    .card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(240, 217, 160, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(240, 217, 160, 0.15);
+    }
+
+    .card h3 {
       font-size: 18px;
-      font-weight: bold;
+      color: #f0d9a0;
+      margin-bottom: 10px;
     }
-    .button:hover {
-      background-color: #0077b3;
+
+    .card p {
+      font-size: 14px;
+      color: #b0b0c0;
+      line-height: 1.5;
+      flex-grow: 1;
+      margin-bottom: 15px;
+    }
+
+    .card .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    /* Кнопка заказа */
+    .order-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #f0d9a0, #d4af37);
+      color: #1a1a2e;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      text-align: center;
+      transition: opacity 0.2s;
+    }
+
+    .order-btn:hover {
+      opacity: 0.85;
+    }
+
+    /* Подвал */
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 13px;
+      color: #707080;
+    }
+
+    .footer a {
+      color: #f0d9a0;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <!-- Это кнопка, которая ведет в Telegram -->
-  <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20оформить%20заказ." class="button">
-    Заказать
-  </a>
+
+  <!-- Шапка -->
+  <div class="header">
+    <div class="header-content">
+      <h1>Наталья Рудая | Ясновидящая | Медиум | Целитель | Регрессолог | Обучение</h1>
+      <p>Индивидуальный куратор · Сопровождаю бизнес · Энергопрактик</p>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Раздел Услуги -->
+    <h2 class="section-title">✨ Услуги</h2>
+    <div class="grid">
+
+      <div class="card">
+        <h3>Индивидуальная консультация</h3>
+        <p>Личный разбор вашей ситуации, ответы на вопросы, диагностика энергетического состояния.</p>
+        <div class="price">от 5 000 ₽</div>
+        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20записаться%20на%20индивидуальную%20консультацию." class="order-btn">Записаться</a>
+      </div>
+
+      <div class="card">
+        <h3>Регрессия</h3>
+        <p>Погружение в прошлые жизни, работа с родовыми сценариями и глубинными блоками.</p>
+        <div class="price">от 8 000 ₽</div>
+        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20записаться%20на%20регрессию." class="order-btn">Записаться</a>
+      </div>
+
+      <div class="card">
+        <h3>Энергомассаж</h3>
+        <p>Восстановление энергетического баланса, снятие напряжения и блоков.</p>
+        <div class="price">от 3 000 ₽</div>
+        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20записаться%20на%20энергомассаж." class="order-btn">Записаться</a>
+      </div>
+
+      <div class="card">
+        <h3>Сопровождение бизнеса</h3>
+        <p>Энергетическая поддержка и кураторство для предпринимателей и руководителей.</p>
+        <div class="price">от 15 000 ₽</div>
+        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20узнать%20про%20сопровождение%20бизнеса." class="order-btn">Записаться</a>
+      </div>
+
+    </div>
+
+    <!-- Раздел Товары -->
+    <h2 class="section-title">🛍️ Товары</h2>
+    <div class="grid">
+
+      <div class="card">
+        <h3>Обучение</h3>
+        <p>Курсы и практики по развитию ясновидения, работе с энергиями и медиумизму.</p>
+        <div class="price">от 10 000 ₽</div>
+        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20узнать%20про%20обучение." class="order-btn">Узнать</a>
+      </div>
+
+      <div class="card">
+        <h3>Амулет / Талисман</h3>
+        <p>Индивидуально заряженный талисман на удачу, защиту или привлечение.</p>
+        <div class="price">от 2 500 ₽</div>
+        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20заказать%20амулет." class="order-btn">Заказать</a>
+      </div>
+
+      <div class="card">
+        <h3>Свеча с программой</h3>
+        <p>Ритуальная свеча с заложенной программой на вашу цель.</p>
+        <div class="price">от 1 500 ₽</div>
+        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20заказать%20свечу%20с%20программой." class="order-btn">Заказать</a>
+      </div>
+
+      <div class="card">
+        <h3>Энергетический набор</h3>
+        <p>Комплект для самостоятельной работы с энергиями и очищения пространства.</p>
+        <div class="price">от 4 000 ₽</div>
+        <a href="https://t.me/Fghfghfgh16?text=Здравствуйте!%20Хочу%20заказать%20энергетический%20набор." class="order-btn">Заказать</a>
+      </div>
+
+    </div>
+
+    <!-- Подвал -->
+    <div class="footer">
+      <p>Сайт: <a href="https://rudaynataliya.ru" target="_blank">rudaynataliya.ru</a></p>
+      <p style="margin-top: 8px;">Менеджер: <a href="https://t.me/NatalyaRudaya8_Manager" target="_blank">@NatalyaRudaya8_Manager</a></p>
+    </div>
+
+  </div>
+
+  <script>
+    // Активируем приложение, если оно открыто внутри Telegram
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.ready();
+      window.Telegram.WebApp.expand();
+    }
+  </script>
+
 </body>
 </html>
